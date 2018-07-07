@@ -1,0 +1,112 @@
+.container{
+	height:200px;
+	width:800px;
+	font-size: 0;
+	background-color: white;
+	position: absolute;
+  	margin: auto;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+
+
+}
+
+.timer{
+	position: absolute;
+	background-color: black;
+	height: 200px;
+	width: 700px;
+	top: 0px;
+	left: 0px;
+
+
+  font-size: 160px;
+
+	text-align: center;
+	font-family: Helvetica;
+	color: grey;
+}
+
+.buttons{
+	position: absolute;
+	background-color: white;
+	height: 200px;
+	width: 100px;
+	top: 0px;
+
+  left:703px;
+}
+
+.start{
+  position: absolute;
+	background-color: black;
+	height: 60px;
+	width: 95px;
+	top: 3px;
+	right: 3px;
+
+  font-size: 30px;
+
+	text-align: center;
+	font-family: Helvetica;
+	color: grey;
+  vertical-align: middle;
+  cursor: default;
+
+}
+
+.pause{
+  position: absolute;
+  background-color: black;
+
+  top: 70px;
+  right: 3px;
+  height: 60px;
+  width: 95px;
+
+  font-size: 30px;
+
+  text-align: center;
+  font-family: Helvetica;
+  color: grey;
+  vertical-align: middle;
+  cursor: default;
+
+}
+
+.stop{
+  position: absolute;
+	background-color: black;
+	height: 60px;
+	width: 95px;
+	bottom: 3px;
+	right: 3px;
+
+  font-size: 30px;
+
+  text-align: center;
+  vertical-align: middle;
+  font-family: Helvetica;
+  color: grey;
+
+  cursor: default;
+}
+
+.counter{
+  position: absolute;
+
+  width: 700px;
+  height: 60px;
+  top: 203px;
+
+  background-color: black;
+
+  font-size: 40px;
+
+	text-align: center;
+	font-family: Helvetica;
+	color: grey;
+
+}
