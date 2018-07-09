@@ -1,42 +1,75 @@
-// work timer counts down from 25 mins and adds a pomodoros when complete
-const workTimer = 5;
-const breakTimer = 10;
-const lbreakTimer = 15;
+
+const workTimer = 1500;
+const breakTimer = 300;
+const lbreakTimer = 600;
 var pomCounter = 0;
+var allCounter = 0;
 var timer = workTimer;
-
 var mins, seconds;
+var counting;
+var stopped = true;
+
+var display = document.querySelector(".timer")
+var noPoms = document.querySelector(".noPoms")
+var mode = document.querySelector(".mode")
+const start = document.querySelector(".start")
+const pause = document.querySelector(".pause")
+const stop = document.querySelector(".stop")
+
+start.addEventListener("click",startTimer,false);
+stop.addEventListener("click",stopTimer,false);
+pause.addEventListener("click",pauseTimer,false);
+
+function pauseTimer(){
+  stopped = true;
+  if(allCounter % 2 == 0){ // if round number is even then work timer displays
+    clearInterval(counting);
+    timer = workTimer;
+  }
+}
+
+function stopTimer(){
+  stopped = true;
+  clearInterval(counting);
+  timer = workTimer;
+  allCounter = 0;
+  pomCounter = 0;
+  mode.innerText = ""
+  display.innerText = "00:00"
+  noPoms.innerText = "#pomodoros"
+}
 
 
-var counting = setInterval(function () {
-  mins = parseInt(timer / 60);
-  seconds = parseInt(timer % 60);
 
-  mins = mins < 10 ? "0" + mins : mins;
-  seconds = seconds < 10 ? "0" + seconds : seconds;
+function startTimer(){
+  if(stopped == true){
 
-  console.log(mins + ":" + seconds);
+// work timer counts down
+    stopped = false;
+    mode.innerText = "Work"
+    counting = setInterval(function () {
+      mins = parseInt(timer / 60);
+      seconds = parseInt(timer % 60);
+      mins = mins < 10 ? "0" + mins : mins;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      display.innerText = mins + ":" + seconds;
+      timer = --timer;
 
-  timer = --timer;
+      if(timer < 0){ // if we hit zero timer resets to either work or break rounds
+        allCounter += 1;
+        if(allCounter % 2 == 0){ // if round number is even then work timer displays
+          timer = workTimer;
+          mode.innerText = "Work";
+        }
+        else{
+          timer = (allCounter + 1) % 8 == 0 ? lbreakTimer : breakTimer; // else we take a long break if we have had 4 work rounds, otherwise short break
+          pomCounter += 1; //add 1 pomodoros
+          noPoms.innerText = pomCounter + " pomodoros";
+          mode.innerText = "Break"
+        }
+      }
+    }, 1000);// then we loop above until stop is pressed
+  }
 
-  if(timer < 0){
-    console.log("Pomodoros!");
-    pomCounter += 1;
-    timer = pomCounter % 4 == 0 ? lbreakTimer : breakTimer;
-    }
-
-
-
-
-
-}, 1000);
-
-// then break timer counts down 5 mins
-
-// above is looped unless we are on any multiple of 4 pomodoros
-
-// then we take a break for 25 mins
-
-// then we loop above until stop is pressed
-
-// if pause is pressed at any time during work timer then work timer starts from beginning once we resume
+  return;
+}

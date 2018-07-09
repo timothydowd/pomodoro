@@ -94,12 +94,29 @@
   cursor: default;
 }
 
-.counter{
+.noPoms{
   position: absolute;
 
   width: 700px;
   height: 60px;
   top: 203px;
+
+  background-color: black;
+
+  font-size: 40px;
+
+	text-align: center;
+	font-family: Helvetica;
+	color: grey;
+
+}
+
+.mode{
+  position: absolute;
+
+  width: 700px;
+  height: 60px;
+  top: -63px;
 
   background-color: black;
 
